@@ -1,52 +1,42 @@
-# Prerequisites
-*.d
+# =================================================================
+# 1. Keil MDK (ARM) 标准垃圾文件过滤
+# =================================================================
+# 布局与会话文件 (记录窗口位置的，每个人屏幕不一样，必须忽略)
+*.uvguix.*
+*.uvoptx
+*.uvgui.*
 
-# Object files
+# 编译产生的中间文件 (不仅占用空间，还会导致冲突)
 *.o
-*.ko
-*.obj
-*.elf
-
-# Linker output
-*.ilk
+*.d
+*.crf
+*.dep
+*.axf
+*.htm
+*.lnp
+*.sct
+*.lst
 *.map
-*.exp
+*.iex
+*.build_log.htm
 
-# Precompiled Headers
-*.gch
-*.pch
+# 调试器生成的垃圾
+JLinkLog.txt
+*.bak
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
+# =================================================================
+# 2. 忽略特定的编译输出文件夹 (根据你的工程习惯)
+# =================================================================
+# 如果你的工程自动生成这些文件夹，建议直接忽略整个文件夹
+Objects/
+Listings/
+DebugConfig/
+# 如果你使用了 RTE 且不希望提交自动生成的部分，可以解开下面这行
+# RTE/
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
-
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+# =================================================================
+# 3. 保护性配置 (关键！)
+# =================================================================
+# 忽略所有临时文件，但显式允许 .gitkeep
+# 这一行就是为了满足你的特殊需求：防止误杀
+!*.gitkeep
